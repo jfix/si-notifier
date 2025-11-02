@@ -1,6 +1,10 @@
 # si-notifier
 
-A notification script that checks [invader-spotter.art](https://www.invader-spotter.art) for the latest Space Invader updates and sends notifications to an Awtrix display via MQTT.
+A notification script that checks [invader-spotter.art](https://www.invader-spotter.art) for the latest [Space Invader](https://www.space-invaders.com) updates and sends notifications to an Awtrix3 (Ulanzi TC001) display via MQTT.
+
+
+[![Watch the video](https://img.youtube.com/vi/lOuNOxOyad0/0.jpg)](https://www.youtube.com/watch?v=lOuNOxOyad0)
+
 
 ## Features
 
