@@ -3,21 +3,25 @@ import { scrapeNews } from './scraper';
 import { sendNotification } from './notifier';
 import { MqttConfig } from './types';
 
-config();
+config({ override: false }); // only load .env if env vars are missing
+
+const required = ["MQTT_HOST", "MQTT_PORT", "MQTT_USERNAME", "MQTT_PASSWORD", "MQTT_TOPIC"];
 
 // Initialize MQTT config
-if (!process.env.MQTT_HOST || !process.env.MQTT_PORT || !process.env.MQTT_USERNAME || 
-    !process.env.MQTT_PASSWORD || !process.env.MQTT_TOPIC) {
-  console.error('ERROR: MQTT configuration missing. Check your .env file.');
-  process.exit(1);
+for (const key of required) {
+  if (!process.env[key]) {
+    console.error(`Missing required environment variable: ${key}`);
+    process.exit(1);
+  }
 }
 
+// After validation, we can safely assert these values exist
 const mqttConfig: MqttConfig = {
-  host: process.env.MQTT_HOST,
-  port: parseInt(process.env.MQTT_PORT),
-  username: process.env.MQTT_USERNAME,
-  password: process.env.MQTT_PASSWORD,
-  topic: process.env.MQTT_TOPIC
+  host: process.env.MQTT_HOST!,
+  port: parseInt(process.env.MQTT_PORT!),
+  username: process.env.MQTT_USERNAME!,
+  password: process.env.MQTT_PASSWORD!,
+  topic: process.env.MQTT_TOPIC!  // Add non-null assertion here
 };
 
 // Main function
