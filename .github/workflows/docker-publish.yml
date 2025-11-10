@@ -28,7 +28,7 @@ jobs:
         id: meta
         uses: docker/metadata-action@v5
         with:
-          images: ${{ vars.DOCKERHUB_USERNAME }}/si-notifier
+          images: ${{ vars.DOCKERHUB_USERNAME }}/si-notifier-app
           tags: |
             type=raw,value=latest
             type=sha,enable=true,priority=100
